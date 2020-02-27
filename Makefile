@@ -23,7 +23,7 @@ HEADERS = -I includes -I $(LIBDIR)/includes -I $(MLXDIR)
 # LIBS = -L $(LIBDIR) -lft -L $(MLXDIR) -lmlx -framework OpenGL -framework Appkit
 
 # debug - fsanitize
-CFLAGS = -c -g $(W) -fsanitize=address
+CFLAGS = -c -g -fsanitize=address
 LIBS = -L $(LIBDIR) -lft -L $(MLXDIR) -lmlx -framework OpenGL -framework Appkit -fsanitize=address
 
 # # debug - VSCode lldb debugger
@@ -46,14 +46,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	make -C $(MLXDIR)
+#	make -C $(MLXDIR)
 	make -C $(LIBDIR)
 	@$(CC) $(OBJS) $(LIBS) -o $@
 	@echo "$(NAME) created"
 
 clean:
 	@/bin/rm -rf $(OBJDIR)
-	@make -C $(MLXDIR) clean
+#	@make -C $(MLXDIR) clean
 # 	@make -C $(LIBDIR) clean
 	@echo "$(NAME) cleaned"
 

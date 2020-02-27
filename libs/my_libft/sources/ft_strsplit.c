@@ -12,25 +12,6 @@
 
 #include "libft.h"
 
-static int		words_num(char const *s, char c)
-{
-	size_t	i;
-	int		cntr;
-
-	i = 0;
-	cntr = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0')
-			cntr++;
-		while (s[i] && s[i] != c)
-			i++;
-	}
-	return (cntr);
-}
-
 static char		*check_allocation(char **tab, int k)
 {
 	if (!tab[k])
@@ -77,7 +58,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s || c == 0)
 		return (NULL);
 	if (!(tab = (char **)malloc(sizeof(char *) * \
-					(words_num(s, c) + 1))) || !s || c == 0)
+					(ft_words_num(s, c) + 1))) || !s || c == 0)
 		return (NULL);
 	tab = set_tab(tab, s, c);
 	return (tab);
